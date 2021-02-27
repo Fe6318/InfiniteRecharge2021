@@ -6,25 +6,26 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Intake;
 
-public class Shoot extends CommandBase {
-  /** Creates a new Shoot. */
-  private final Shooter shooter;
-  public Shoot() {
-    shooter = new Shooter();
-    addRequirements(shooter);
+public class MoveIntakeUp extends CommandBase {
+  private final Intake intake;
+  /** Creates a new MoveIntake. */
+  public MoveIntakeUp() {
+    intake = new Intake();
+    addRequirements(intake);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    shooter.shootManual(1);
+    intake.moveIntakeUp();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+  }
 
   // Called once the command ends or is interrupted.
   @Override

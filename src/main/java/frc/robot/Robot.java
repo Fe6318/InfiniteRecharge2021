@@ -55,6 +55,10 @@ public class Robot extends TimedRobot {
     // robot's periodic
     // block in order for anything in the Command-based framework to work.
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+
+    System.out.println(NetworkTableInstance.getDefault().getTable("limelight").getPath());
+
+
     NetworkTableEntry tx = table.getEntry("tx");
     NetworkTableEntry ty = table.getEntry("ty");
     NetworkTableEntry ta = table.getEntry("ta");
@@ -70,7 +74,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("LimelightX", x);
     SmartDashboard.putNumber("LimelightY", y);
     SmartDashboard.putNumber("LimelightArea", area);
-    SmartDashboard.putNumber("Shoot Speed", (RobotContainer.driver.getRawAxis(3) + 1) / 2);
+    SmartDashboard.putNumber("Shoot Speed", RobotContainer.driver.getRawAxis(3));
     CommandScheduler.getInstance().run();
   }
 

@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.MoveIntakeDown;
+import frc.robot.commands.MoveIntakeUp;
 import frc.robot.commands.Shoot;
 import frc.robot.subsystems.Shooter;
 
@@ -24,6 +26,8 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   public static Shooter shooter; 
   
+  public static MoveIntakeUp moveIntakeUp;
+  
   public static Joystick driver;
   public static Joystick operator;
   
@@ -31,6 +35,9 @@ public class RobotContainer {
   public static JoystickButton blueButton;
   public static JoystickButton yellowButton;
   public static JoystickButton greenButton;
+
+  public static JoystickButton rampUpButton;
+  public static JoystickButton rampDownButton;
  
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -39,13 +46,16 @@ public class RobotContainer {
     shooter = new Shooter();
     //shooter.setDefaultCommand(new Shoot());
     driver = new Joystick(0);
+    operator = new Joystick(1);
 
-    shootButton = new JoystickButton(driver, Constants.RED_BUTTON);
+    shootButton = new JoystickButton(operator, Constants.GREEN_BUTTON);
     shootButton.whileHeld(new Shoot());
-  
- 
-
     
+    rampUpButton = new JoystickButton(operator, Constants.RAMP_MOTOR_UP);
+    rampDownButton =  new JoystickButton(operator, Constants.RAMP_MOTOR_DOWN); 
+  
+    rampUpButton.whileHeld(new MoveIntakeUp());
+    rampDownButton.whileHeld(new MoveIntakeDown());
   }
 
  
