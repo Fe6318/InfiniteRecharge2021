@@ -10,9 +10,10 @@ import frc.robot.subsystems.DriveTrain;
 
 public class DriveContinuous extends CommandBase {
   /** Creates a new DriveContinouts. */
-  private DriveTrain dTrain = new DriveTrain();
-  public DriveContinuous() {
-    // Use addRequirements() here to declare subsystem dependencies.
+  private DriveTrain dTrain;
+  private double zAxis, xAxis, yAxis;
+
+  public DriveContinuous(DriveTrain dTrain, double zAxis, double xAxis, double yAxis) {
     addRequirements(dTrain);
   }
 
@@ -23,7 +24,7 @@ public class DriveContinuous extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    dTrain.drive(RobotContainer.driver.getRawAxis(0), RobotContainer.driver.getRawAxis(1));
+    dTrain.drive(xAxis, zAxis, yAxis);
   }
 
   // Called once the command ends or is interrupted.

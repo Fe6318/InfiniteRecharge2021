@@ -37,8 +37,27 @@ public class DriveTrain extends SubsystemBase {
     dDrive = new DifferentialDrive(rightMotorGroup, leftMotorGroup);
   }
 
-  public void drive(double xSpeed, double zRotation){
-    dDrive.arcadeDrive(xSpeed, zRotation);
+  public void drive(double xSpeed, double zRotation, double ySpeed){
+    double turnCalc;
+    double turnSum = zRotation + ySpeed;
+    int factor = 1;
+
+    if(xSpeed < 0){
+      factor = -1;
+    }
+
+    double curvedSpeed = Math.pow(xSpeed, 1.5) * factor;
+
+    if(turnSum > 1){
+      turnCalc = 1;
+    }else if(turnSum < -1){
+      turnCalc = -1;
+    }
+    else{
+      turnCalc = turnSum;
+    }
+
+    dDrive.arcadeDrive(curvedSpeed, turnCalc);
   }
   @Override
   public void periodic() {
