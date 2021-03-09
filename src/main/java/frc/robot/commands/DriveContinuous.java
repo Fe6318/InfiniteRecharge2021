@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveTrain;
@@ -12,8 +13,14 @@ public class DriveContinuous extends CommandBase {
   /** Creates a new DriveContinouts. */
   private DriveTrain dTrain;
   private double zAxis, xAxis, yAxis;
+  private Joystick driverJoystick;
 
-  public DriveContinuous(DriveTrain dTrain, double zAxis, double xAxis, double yAxis) {
+  public DriveContinuous(DriveTrain dTrain, Joystick driverJoystick) {
+    this.dTrain = dTrain;
+    this.driverJoystick = driverJoystick;
+    this.zAxis = 0;
+    this.yAxis = 0;
+    this.xAxis = 0;
     addRequirements(dTrain);
   }
 
@@ -24,6 +31,9 @@ public class DriveContinuous extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    xAxis = driverJoystick.getRawAxis(0);
+    zAxis = driverJoystick.getRawAxis(2);
+    yAxis = driverJoystick.getRawAxis(1);
     dTrain.drive(xAxis, zAxis, yAxis);
   }
 

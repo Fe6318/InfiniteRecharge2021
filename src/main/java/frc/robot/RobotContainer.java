@@ -17,6 +17,7 @@ import frc.robot.commands.DriveContinuous;
 import frc.robot.commands.MoveIntake;
 import frc.robot.commands.Shoot;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 
 /**
@@ -32,6 +33,8 @@ public class RobotContainer {
 
   public static MoveIntake moveIntakeUp;
 
+  public static Intake intake;
+
   public static Joystick driver;
   public static Joystick operator;
 
@@ -45,6 +48,8 @@ public class RobotContainer {
 
   public static DriveTrain dTrain;
 
+  public static DriveContinuous dContinuous;
+
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -55,7 +60,8 @@ public class RobotContainer {
     operator = new Joystick(1);
 
     dTrain = new DriveTrain();
-    dTrain.setDefaultCommand(new DriveContinuous(dTrain, driver.getRawAxis(2), driver.getRawAxis(0), driver.getRawAxis(1)));
+    dContinuous = new DriveContinuous(dTrain, driver);
+    dTrain.setDefaultCommand(dContinuous);
 
     shootButton = new JoystickButton(operator, Constants.GREEN_BUTTON);
     shootButton.whileHeld(new Shoot());
@@ -63,8 +69,9 @@ public class RobotContainer {
     rampUpButton = new JoystickButton(operator, Constants.RAMP_MOTOR_UP);
     rampDownButton =  new JoystickButton(operator, Constants.RAMP_MOTOR_DOWN); 
   
-    rampUpButton.whileHeld(new MoveIntake(true));
-    rampDownButton.whileHeld(new MoveIntake(false));
+    intake = new Intake();
+    rampUpButton.whileHeld(new MoveIntake(intake, true));
+    rampDownButton.whileHeld(new MoveIntake(intake, false));
   }
 
  

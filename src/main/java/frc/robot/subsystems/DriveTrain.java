@@ -9,6 +9,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -39,15 +40,16 @@ public class DriveTrain extends SubsystemBase {
 
   public void drive(double xSpeed, double zRotation, double ySpeed){
     double turnCalc;
-    double turnSum = zRotation + ySpeed;
+    double turnSum = zRotation + xSpeed;
     int factor = 1;
 
-    if(xSpeed < 0){
+    if(ySpeed < 0){
       factor = -1;
     }
 
-    double curvedSpeed = Math.pow(xSpeed, 1.5) * factor;
+    double curvedSpeed = Math.pow(Math.abs(ySpeed), 1.5) * -factor;
 
+    SmartDashboard.putNumber("speed", curvedSpeed);
     if(turnSum > 1){
       turnCalc = 1;
     }else if(turnSum < -1){

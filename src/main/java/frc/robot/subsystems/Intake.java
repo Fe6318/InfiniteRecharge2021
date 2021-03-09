@@ -14,15 +14,14 @@ public class Intake extends SubsystemBase {
   private Victor intakeMotor;
   /** Creates a new Intake. */
   public Intake() {
-    //intakeMotor = new Victor(Constants.RAMP_MOTOR_CONTROLLER);
-
+    intakeMotor = new Victor(Constants.RAMP_MOTOR_CONTROLLER);
     }
 
-  public void moveIntake(boolean moveUp){
+  public void moveIntake(boolean moveUp, double speed){
     if(moveUp){
-      intakeMotor.set(0.75);
+      intakeMotor.set(speed);
     }else{
-      intakeMotor.set(-0.75);
+      intakeMotor.set(-speed);
     }
   }
 

@@ -12,8 +12,8 @@ public class MoveIntake extends CommandBase {
   private final Intake intake;
   private boolean moveUp;
   /** Creates a new MoveIntake. */
-  public MoveIntake(boolean moveUp) {
-    intake = new Intake();
+  public MoveIntake(Intake intake, boolean moveUp) {
+    this.intake = intake;
     addRequirements(intake);
     this.moveUp = moveUp;
   }
@@ -21,21 +21,23 @@ public class MoveIntake extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    intake.moveIntake(moveUp);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    intake.moveIntake(moveUp, 0.75);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    intake.moveIntake(moveUp, 0);
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }

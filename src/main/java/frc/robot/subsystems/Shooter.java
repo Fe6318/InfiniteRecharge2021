@@ -19,7 +19,7 @@ public class Shooter extends SubsystemBase {
     shooterMotorLeft = new WPI_VictorSPX(Constants.ShooterMotorLeft);
   }
 
-  public void shootManual(int speed){
+  public void shootManual(double speed){
     shooterMotorLeft.set(speed);
     shooterMotorRight.set(speed);
   }
