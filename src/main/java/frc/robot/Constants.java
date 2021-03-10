@@ -22,7 +22,7 @@ public final class Constants {
     public static final int YELLOW_BUTTON = 4;
     
     public static final int RAMP_MOTOR_UP = 6;
-    public static final int RAMP_MOTOR_DOWN = 7;
+    public static final int RAMP_MOTOR_DOWN = 5;
 
     public static final int ShooterMotorLeft = 4;
     public static final int ShooterMotorRight = 5;

@@ -18,6 +18,7 @@ public class Intake extends SubsystemBase {
     }
 
   public void moveIntake(boolean moveUp, double speed){
+    System.out.println(moveUp);
     if(moveUp){
       intakeMotor.set(speed);
     }else{

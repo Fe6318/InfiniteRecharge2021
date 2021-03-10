@@ -40,14 +40,14 @@ public class DriveTrain extends SubsystemBase {
 
   public void drive(double xSpeed, double zRotation, double ySpeed){
     double turnCalc;
-    double turnSum = zRotation + xSpeed;
+    double turnSum = zRotation;
     int factor = 1;
 
     if(ySpeed < 0){
       factor = -1;
     }
 
-    double curvedSpeed = Math.pow(Math.abs(ySpeed), 1.5) * -factor;
+    double curvedSpeed = Math.pow(Math.abs(ySpeed), 1.5) * factor;
 
     SmartDashboard.putNumber("speed", curvedSpeed);
     if(turnSum > 1){
