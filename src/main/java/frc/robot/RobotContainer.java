@@ -64,7 +64,7 @@ public class RobotContainer {
     dTrain.setDefaultCommand(dContinuous);
 
     shootButton = new JoystickButton(operator, Constants.GREEN_BUTTON);
-    shootButton.whileHeld(new Shoot());
+    shootButton.whileHeld(new Shoot(shooter));
     
     rampUpButton = new JoystickButton(operator, Constants.RAMP_MOTOR_UP);
     rampDownButton =  new JoystickButton(operator, Constants.RAMP_MOTOR_DOWN); 

@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
-  private static WPI_VictorSPX shooterMotorRight;
-  private static WPI_VictorSPX shooterMotorLeft;
+  private WPI_VictorSPX shooterMotorRight;
+  private WPI_VictorSPX shooterMotorLeft;
   /** Creates a new Shooter. */
   public Shooter() {
     shooterMotorRight = new WPI_VictorSPX(Constants.ShooterMotorRight);

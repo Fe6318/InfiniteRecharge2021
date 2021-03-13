@@ -10,10 +10,10 @@ import frc.robot.subsystems.Shooter;
 
 public class Shoot extends CommandBase {
   /** Creates a new Shoot. */
-  private final Shooter shooter;
-  public Shoot() {
-    shooter = new Shooter();
+  private Shooter shooter;
+  public Shoot(Shooter shooter) {
     addRequirements(shooter);
+    this.shooter = shooter;
   }
 
   // Called when the command is initially scheduled.
