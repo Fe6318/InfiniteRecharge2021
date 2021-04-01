@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.DriveContinuous;
+import frc.robot.subsystems.DriveTrain;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -72,10 +72,10 @@ public class Robot extends TimedRobot {
     System.out.print(x);
     System.out.print(y);
     // post to smart dashboard periodically
-    SmartDashboard.putNumber("LimelightX", x);
-    SmartDashboard.putNumber("LimelightY", y);
-    SmartDashboard.putNumber("LimelightArea", area);
     SmartDashboard.putNumber("Shoot Speed", RobotContainer.driver.getRawAxis(3));
+    SmartDashboard.putNumber("Right Encoder Distance (M)", RobotContainer.dTrain.getRightEncoder().getDistance());
+    SmartDashboard.putNumber("Left Encoder Distance (M)", RobotContainer.dTrain.getLeftEncoder().getDistance());
+
     CommandScheduler.getInstance().run();
   }
 
