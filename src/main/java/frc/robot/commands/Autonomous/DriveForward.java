@@ -4,11 +4,14 @@
 
 package frc.robot.commands.Autonomous;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotContainer;
 
-public class DriveStraight extends CommandBase {
-  /** Creates a new DriveStraight. */
-  public DriveStraight() {
+public class DriveForward extends CommandBase {
+  /** Creates a new DriveForward. */
+
+  public DriveForward() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -18,11 +21,16 @@ public class DriveStraight extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {   
+    RobotContainer.dTrain.autoArcade(.5, 0);
+    Timer.delay(4.0);                       
+    RobotContainer.dTrain.autoArcade(0, 0);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override

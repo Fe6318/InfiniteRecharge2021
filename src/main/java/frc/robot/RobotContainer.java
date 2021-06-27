@@ -4,12 +4,15 @@
 
 package frc.robot;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveContinuous;
 import frc.robot.commands.MoveIntake;
 import frc.robot.commands.Shoot;
+import frc.robot.commands.Autonomous.DriveForward;
 import frc.robot.constants.Constants;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
@@ -45,6 +48,10 @@ public class RobotContainer {
 
   public static DriveContinuous dContinuous;
 
+  public static DriveForward autoDrive;
+
+  public static AHRS ahrs;
+
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -57,6 +64,8 @@ public class RobotContainer {
     dTrain = new DriveTrain();
     dContinuous = new DriveContinuous(dTrain, driver);
     dTrain.setDefaultCommand(dContinuous);
+
+    autoDrive = new DriveForward();
 
     shootButton = new JoystickButton(operator, Constants.GREEN_BUTTON);
     shootButton.whileHeld(new Shoot(shooter));
@@ -87,7 +96,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return null;
-
+    return autoDrive;
  }
 }

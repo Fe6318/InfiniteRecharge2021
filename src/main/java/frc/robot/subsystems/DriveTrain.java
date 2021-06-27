@@ -17,11 +17,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.Constants;
 
+
 public class DriveTrain extends SubsystemBase {
   private WPI_VictorSPX rightMotorOne;
   private WPI_VictorSPX rightMotorTwo;
 
-  private WPI_VictorSPX leftMotorOne;
+  public static WPI_VictorSPX leftMotorOne;
   private WPI_VictorSPX leftMotorTwo;
 
   private SpeedControllerGroup rightMotorGroup;
@@ -35,9 +36,8 @@ public class DriveTrain extends SubsystemBase {
 
   private static final AHRS ahrs = new AHRS(SerialPort.Port.kMXP); 
 
-  private static final Encoder encLeft = new Encoder(0, 1);
-  private static final Encoder encRight = new Encoder(2, 3);
-
+  public static final Encoder encLeft = new Encoder(0, 1);
+  public static final Encoder encRight = new Encoder(2, 3);
 
   /** Creates a new DriveTrain. */
   public DriveTrain() {
