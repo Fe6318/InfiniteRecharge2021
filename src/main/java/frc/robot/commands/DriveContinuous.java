@@ -31,8 +31,16 @@ public class DriveContinuous extends CommandBase {
   @Override
   public void execute() {
     xAxis = driverJoystick.getRawAxis(0);
-    zAxis = driverJoystick.getRawAxis(2);
-    yAxis = driverJoystick.getRawAxis(1);
+    zAxis = driverJoystick.getRawAxis(0);
+    yAxis = driverJoystick.getRawAxis(3);
+    double axis3 = driverJoystick.getRawAxis(3);
+    double axis1 = driverJoystick.getRawAxis(2);
+    if(axis3 > 0){
+     yAxis = axis3; 
+    }
+    else{
+      yAxis = axis1 * -1;
+    }
     dTrain.drive(xAxis, zAxis, yAxis);
   }
 

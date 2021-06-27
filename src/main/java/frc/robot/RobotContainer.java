@@ -4,12 +4,14 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveContinuous;
 import frc.robot.commands.MoveIntake;
 import frc.robot.commands.Shoot;
+import frc.robot.commands.Autonomous.DriveForward;
 import frc.robot.constants.Constants;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Intake;
@@ -43,6 +45,8 @@ public class RobotContainer {
 
   public static DriveTrain dTrain;
 
+  public static DriveForward autoDrive;
+
   public static DriveContinuous dContinuous;
 
   /**
@@ -58,6 +62,8 @@ public class RobotContainer {
     dContinuous = new DriveContinuous(dTrain, driver);
     dTrain.setDefaultCommand(dContinuous);
 
+    autoDrive = new DriveForward(dTrain);
+
     shootButton = new JoystickButton(operator, Constants.GREEN_BUTTON);
     shootButton.whileHeld(new Shoot(shooter));
     
@@ -67,6 +73,9 @@ public class RobotContainer {
     intake = new Intake();
     rampUpButton.whileHeld(new MoveIntake(intake, true));
     rampDownButton.whileHeld(new MoveIntake(intake, false));
+
+    //CameraServer.getInstance().
+    //CameraServer.getInstance().startAutomaticCapture(2);
   }
 
  
@@ -87,7 +96,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return null;
+    return autoDrive;
 
  }
 }

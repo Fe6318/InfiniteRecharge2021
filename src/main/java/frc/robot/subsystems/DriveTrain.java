@@ -61,13 +61,10 @@ public class DriveTrain extends SubsystemBase {
     double turnSum = zRotation;
     int factor = 1;
 
-    if(ySpeed < 0){
-      factor = -1;
-    }
-
-    double curvedSpeed = Math.pow(Math.abs(ySpeed), 1.5) * factor;
+    double curvedSpeed = Math.pow(ySpeed, 3) * factor;
 
     SmartDashboard.putNumber("speed", curvedSpeed);
+    SmartDashboard.putNumber("y-speed", ySpeed);
     if(turnSum > 1){
       turnCalc = 1;
     }else if(turnSum < -1){
@@ -76,6 +73,8 @@ public class DriveTrain extends SubsystemBase {
     else{
       turnCalc = turnSum;
     }
+
+    SmartDashboard.putNumber("turnCalc", turnCalc);
 
     dDrive.arcadeDrive(curvedSpeed, turnCalc);
   }
